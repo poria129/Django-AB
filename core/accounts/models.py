@@ -17,7 +17,7 @@ class UserManager(BaseUserManager):
         if not email:
             raise ValueError(_('The email must be set'))
         
-        email = self.normilize_email(email)
+        email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
         user.save()
@@ -44,9 +44,9 @@ class User (AbstractBaseUser,PermissionsMixin):
 
     email = models.EmailField(max_length=255,unique=True)
     is_superuser = models.BooleanField(default=False)
-    is_Staff = models.booleanField(default=False)
-    is_active = models.booleanField(default=True)
-    # is_verified = models.booleanField(default=False)
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
+    # is_verified = models.BooleanField(default=False)
     
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
